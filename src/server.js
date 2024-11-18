@@ -8,31 +8,37 @@ const PORT = 5000;
 
 app.use(cors());
 app.use(express.json());
-console.log('DB_USER:', process.env.DB_USER);
-console.log('DB_PASSWORD:', process.env.DB_PASSWORD);
-console.log('DB_NAME:', process.env.DB_NAME);
+// console.log('DB_USER:', process.env.DB_USER);
+// console.log('DB_PASSWORD:', process.env.DB_PASSWORD);
+// console.log('DB_NAME:', process.env.DB_NAME);
 
 // Configuration de la connexion à MySQL en utilisant les variables d'environnement
-const db = mysql.createConnection({
+// Configuration du pool de connexions MySQL
+const db = mysql.createPool({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  port: process.env.DB_PORT
+  port: process.env.DB_PORT,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
+  // Ajout des paramètres de timeout pour éviter les erreurs ECONNRESET
+  connectTimeout: 10000, // 10 secondes
+  acquireTimeout: 10000, // 10 secondes
+  timeout: 10000 // 10 secondes
 });
 
-
-// Connexion à la base de données
-
-db.connect((err) => {
+// Test de la connexion à la base de données
+db.getConnection((err, connection) => {
   if (err) {
     console.error('Erreur de connexion à MySQL:', err);
-    process.exit(1); // Arrête le serveur si la connexion échoue
+    process.exit(1);
   } else {
     console.log('Connecté à la base de données MySQL');
+    connection.release(); // Libère la connexion
   }
 });
-
 
 // Route pour obtenir tous les produits
 app.get('/api/produits', (req, res) => {
