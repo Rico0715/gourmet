@@ -12,7 +12,7 @@ function App() {
   useEffect(() => {
     const fetchDishes = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/produits');
+        const response = await axios.get('https://gourmet-2.onrender.com/api/produits');
         setDishes(response.data);
       } catch (error) {
         console.error('Erreur lors de la récupération des produits:', error);
