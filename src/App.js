@@ -1,24 +1,42 @@
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import axios from 'axios';
+import ReservationCard from './Components/ReservationCard';
+import OrderSummary from './Components/OrderSummary';
 import './App.css';
 
 function App() {
+  const [dishes, setDishes] = useState([]);
+
+  // Récupérer les produits depuis le backend
+  useEffect(() => {
+    const fetchDishes = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/produits');
+        setDishes(response.data);
+      } catch (error) {
+        console.error('Erreur lors de la récupération des produits:', error);
+      }
+    };
+    fetchDishes();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        {/* Page d'accueil avec une seule carte qui affiche tous les produits */}
+        <Route
+          path="/"
+          element={
+            <div className="min-h-screen bg-gray-100 flex flex-wrap justify-center p-8">
+              <ReservationCard dishes={dishes} />
+            </div>
+          }
+        />
+        {/* Page de récapitulatif de la commande */}
+        <Route path="/summary" element={<OrderSummary />} />
+      </Routes>
+    </Router>
   );
 }
 

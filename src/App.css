@@ -1,38 +1,185 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Style global pour la carte */
+.card {
+  width: 600px;
+  border-radius: 12px;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.image-container {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  background-color: white; /* Fond blanc */
+  border-radius: 12px;
+}
+
+
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Taille et style de l'image */
+.fixed-size {
+  width: 7cm;
+  height: 7cm;
+  object-fit: cover;
+  border-radius: 12px;
+  margin: 16px auto; /* Centre l'image horizontalement */
+}
+
+/* Style pour le nom du plat */
+.dish-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 16px;
+  text-align: center;
+  color: #2c3e50;
+}
+
+/* Style pour les informations supplémentaires */
+.dish-info {
+  text-align: center;
+  margin-top: 16px;
+}
+
+.dish-info p {
+  margin: 6px 0;
+  font-size: 1rem;
+  color: #7f8c8d;
+}
+
+/* Style des champs de sélection (date et quantité) */
+.date-input,
+.quantity-select {
+  margin-top: 12px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #bdc3c7;
+  width: 100%;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: border-color 0.3s;
+}
+
+.date-input:focus,
+.quantity-select:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
+/* Style du bouton de réservation */
+.reserve-btn {
+  background-color: #3498db;
   color: white;
+  font-weight: bold;
+  padding: 12px 20px;
+  border-radius: 8px;
+  margin-top: 20px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
-.App-link {
-  color: #61dafb;
+.reserve-btn:hover {
+  background-color: #2980b9;
+  transform: translateY(-3px);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Style pour le calendrier (champ date) */
+.date-input {
+  margin-top: 12px;
+  padding: 10px;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  border: 1px solid #bdc3c7;
+}
+
+.date-input:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
+/* Style pour le champ quantité */
+.quantity-select {
+  padding: 10px;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  border: 1px solid #bdc3c7;
+}
+
+.quantity-select:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
+/* Espacement supplémentaire */
+.mt-4 {
+  margin-top: 16px;
+}
+
+.summary {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.summary-item {
+  margin-bottom: 16px;
+}
+
+.total-summary {
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: right;
+  margin-top: 20px;
+}
+
+/* Style pour le bouton Confirmer la commande (vert) */
+.submit-btn {
+  background-color: #28a745; /* Couleur verte */
+  color: white;
+  font-weight: bold;
+  padding: 12px 20px;
+  border-radius: 8px;
+  margin-top: 20px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.submit-btn:hover {
+  background-color: #218838; /* Couleur verte plus foncée au survol */
+  transform: translateY(-3px);
+}
+
+/* Espacer les boutons */
+.buttons-container {
+  display: flex;
+  justify-content: space-between; /* Espace égal entre les boutons */
+  margin-top: 20px;
+}
+/* Style pour le bouton Retour */
+.back-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.back-btn:hover {
+  background-color: #0056b3;
 }
