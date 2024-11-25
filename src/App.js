@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import axios from 'axios';
 import ReservationCard from './Components/ReservationCard';
 import OrderSummary from './Components/OrderSummary';
+import ReservationsTable from './Components/ReservationTable';
 import './App.css';
 
 function App() {

@@ -77,15 +77,25 @@ app.post('/api/reservations', (req, res) => {
   res.status(200).json({ message: 'Commande enregistrée avec succès' });
 });
 
-// Route pour récupérer toutes les réservations
 app.get('/api/Mes-reservations', (req, res) => {
-  const query = 'SELECT * FROM reservations';
+  const query = `
+    SELECT 
+      phone,
+      reservation_date,
+      GROUP_CONCAT(CONCAT(produit_id, ' (x', quantity, ')') SEPARATOR ', ') AS produits
+    FROM 
+      reservations
+    GROUP BY 
+      phone, reservation_date;
+  `;
+
   db.query(query, (err, results) => {
     if (err) {
       console.error('Erreur lors de la récupération des réservations:', err);
-      return res.status(500).json({ error: 'Erreur serveur' });
+      res.status(500).json({ error: 'Erreur serveur' });
+    } else {
+      res.json(results);
     }
-    res.json(results);
   });
 });
 

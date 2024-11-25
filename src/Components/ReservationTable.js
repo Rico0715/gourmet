@@ -6,10 +6,10 @@ const ReservationsTable = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Fonction pour récupérer les réservations
+    // Récupération des données via l'API
     const fetchReservations = async () => {
       try {
-        const response = await fetch('https://gourmet-2.onrender.com/api/reservations');
+        const response = await fetch('https://gourmet-2.onrender.com/api/Mes-reservations');
         if (!response.ok) {
           throw new Error('Erreur lors de la récupération des données');
         }
@@ -31,24 +31,20 @@ const ReservationsTable = () => {
   return (
     <div>
       <h2>Liste des Réservations</h2>
-      <table border="1">
+      <table>
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Date</th>
             <th>Téléphone</th>
-            <th>Produit ID</th>
-            <th>Quantité</th>
+            <th>Date de réservation</th>
+            <th>Produits</th>
           </tr>
         </thead>
         <tbody>
-          {reservations.map((reservation) => (
-            <tr key={reservation.id}>
-              <td>{reservation.id}</td>
-              <td>{reservation.reservation_date}</td>
+          {reservations.map((reservation, index) => (
+            <tr key={index}>
               <td>{reservation.phone}</td>
-              <td>{reservation.produit_id}</td>
-              <td>{reservation.quantity}</td>
+              <td>{reservation.reservation_date}</td>
+              <td>{reservation.produits}</td>
             </tr>
           ))}
         </tbody>
