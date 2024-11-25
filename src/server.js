@@ -40,6 +40,11 @@ db.getConnection((err, connection) => {
   }
 });
 
+// Activer CORS pour autoriser les requêtes depuis ton domaine frontend
+app.use(cors({ 
+  origin: 'https://resa-lesgourmets.fr/', // Remplace par l'URL de ton site sur Hostinger
+}));
+
 // Route pour obtenir tous les produits
 app.get('/api/produits', (req, res) => {
   const query = 'SELECT * FROM produits';
@@ -98,6 +103,7 @@ app.get('/api/Mes-reservations', (req, res) => {
     }
   });
 });
+
 
 
 // Démarrage du serveur

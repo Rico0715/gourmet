@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import './ReservationTable.css'
 const ReservationsTable = () => {
   const [reservations, setReservations] = useState([]);
   const [loading, setLoading] = useState(true);
