@@ -35,6 +35,7 @@ function App() {
         />
         {/* Page de récapitulatif de la commande */}
         <Route path="/summary" element={<OrderSummary />} />
+        <Route path="/reservations" element={<ReservationsTable />} />
       </Routes>
     </Router>
   );
